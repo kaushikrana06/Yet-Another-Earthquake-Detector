@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="100" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth2"/>
+	<item value="1" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.sortColumn"/>
+	<item value="226" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth1"/>
+	<item value="125" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth0"/>
+	<section name="org.eclipse.jdt.debug.ui.PACKAGE_SELECTION_DIALOG_SECTION">
+		<item value="526" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="575" key="DIALOG_HEIGHT"/>
+		<item value="114" key="DIALOG_X_ORIGIN"/>
+		<item value="-89" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=UCSDUnfoldingMaps/lib\/core.jar&amp;lt;processing.core(PApplet.class[PApplet&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=UCSDUnfoldingMaps/lib\/jogl-all.jar\=\/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY\=\/unfolding-app-template\/libNative\=&amp;lt;com.jogamp.newt.util.applet(VersionApplet3.class[VersionApplet3&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=UCSDUnfoldingMaps/lib\/jogl-all.jar\=\/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY\=\/unfolding-app-template\/libNative\=&amp;lt;jogamp.opengl.awt(VersionApplet.class[VersionApplet&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=UCSDUnfoldingMaps/src&amp;lt;module6{AirportMap.java[AirportMap&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=UCSDUnfoldingMaps/src&amp;lt;module1{HelloWorld.java[HelloWorld&lt;/infoNode&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="188" key="DIALOG_X_ORIGIN"/>
+			<item value="192" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

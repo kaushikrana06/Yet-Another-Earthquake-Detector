@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="de.fhpotsdam.unfolding.providers.Microsoft"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="sun.java2d.pipe.Region"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+<fullyQualifiedTypeName name="de.fhpotsdam.unfolding.providers.StamenMapProvider"/>
+<fullyQualifiedTypeName name="de.fhpotsdam.unfolding.providers.Yahoo"/>
+<fullyQualifiedTypeName name="de.fhpotsdam.unfolding.providers.OpenStreetMap"/>
+<fullyQualifiedTypeName name="de.fhpotsdam.unfolding.providers.Google"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,217 @@
+package module6;
+
+import processing.core.PApplet;
+import de.fhpotsdam.unfolding.UnfoldingMap;
+import de.fhpotsdam.unfolding.utils.MapUtils;
+import parsing.ParseFeed;
+import de.fhpotsdam.unfolding.providers.*;
+import de.fhpotsdam.unfolding.providers.Google.*;
+
+import java.util.List;
+import de.fhpotsdam.unfolding.data.Feature;
+import de.fhpotsdam.unfolding.data.GeoJSONReader;
+
+import java.util.HashMap;
+
+
+import de.fhpotsdam.unfolding.marker.Marker;
+
+/**
+ * Visualizes life expectancy in different countries. 
+ * 
+ * It loads the country shapes from a GeoJSON file via a data reader, and loads the population density values from
+ * another CSV file (provided by the World Bank). The data value is encoded to transparency via a simplistic linear
+ * mapping.
+ */
+public class LifeExpectancy extends PApplet {
+
+	UnfoldingMap map;
+	HashMap<String, Float> lifeExpMap;
+	List<Feature> countries;
+	List<Marker> countryMarkers;
+
+	public void setup() {
+		size(800, 600, OPENGL);
+		map = new UnfoldingMap(this, 50, 50, 700, 500, new Google.GoogleMapProvider());
+		MapUtils.createDefaultEventDispatcher(this, map);
+
+		// Load lifeExpectancy data
+		lifeExpMap = ParseFeed.loadLifeExpectancyFromCSV(this,"LifeExpectancyWorldBank.csv");
+		
+
+		// Load country polygons and adds them as markers
+		countries = GeoJSONReader.loadData(this, "countries.geo.json");
+		countryMarkers = MapUtils.createSimpleMarkers(countries);
+		map.addMarkers(countryMarkers);
+		System.out.println(countryMarkers.get(0).getId());
+		
+		// Country markers are shaded according to life expectancy (only once)
+		shadeCountries();
+	}
+
+	public void draw() {
+		// Draw map tiles and country markers
+		map.draw();
+	}
+
+	//Helper method to color each country based on life expectancy
+	//Red-orange indicates low (near 40)
+	//Blue indicates high (near 100)
+	private void shadeCountries() {
+		for (Marker marker : countryMarkers) {
+			// Find data for country of the current marker
+			String countryId = marker.getId();
+			System.out.println(lifeExpMap.containsKey(countryId));
+			if (lifeExpMap.containsKey(countryId)) {
+				float lifeExp = lifeExpMap.get(countryId);
+				// Encode value as brightness (values range: 40-90)
+				int colorLevel = (int) map(lifeExp, 40, 90, 10, 255);
+				marker.setColor(color(255-colorLevel, 100, colorLevel));
+			}
+			else {
+				marker.setColor(color(150,150,150));
+			}
+		}
+		public List<SimpleLinesMarker> getRoutes() {
+			/* We could simply return our routes list, but that would be a security issue.
+			 * That would mean exposing our internal, private implementation.
+			 * So, instead, we return a copy of our routes list.
+			 */
+			return new LinkedList<>(routes);
+		}
+
+		/**
+		 * Return a list of destinations from this airport
+		 * @return the destinations list
+		 */
+		public List<AirportMarker> getDestinations() {
+			/* Same thing here, returning our destinations list would be a security flaw.
+			 * Because, that would expose our internal, private implementation.
+			 * So, instead, we'll return a copy of our destinations list.
+			 */
+			return new LinkedList<>(destinations);
+		}
+
+		/**
+		 * Add a route for this airport
+		 * @param route The route to be added
+		 * @return true if the operation succeeded
+		 * 		   false otherwise
+		 */
+		public boolean addRoute(SimpleLinesMarker route) {
+			boolean result = false;
+			if (route != null) {
+				result = routes.add(route);
+			}
+			return result;
+		}
+
+		/**
+		 * Add a destination for this airport
+		 * @param destination The destination to be added
+		 * @return true if the operation succeeded
+		 * 		   false otherwise
+		 */
+		public boolean addDestination(AirportMarker destination) {
+			boolean result = false;
+			if (destination != null) {
+				result = destinations.add(destination);
+			}
+			return result;
+		}
+
+		@Override
+		public void setSelected(boolean state) {
+			super.setSelected(state);
+			if (! this.isSelected()) {
+				for (SimpleLinesMarker route: routes) {
+					route.setHidden(true);
+				}
+			}
+		}
+
+		/**
+		 * Return the airport code of this marker
+		 * @return the airport code marker if it exists
+		 * 		   or an empty string otherwise
+		 */
+		public String getCode() {
+			String code = this.getStringProperty("code");
+			if (code != null && ! code.isEmpty()) {
+				code = code.substring(1, code.length() - 1);
+			}
+			return code;
+		}
+
+		/**
+		 * Return the aiport's altitude
+		 * @return the altitude
+		 */
+		public float getAltitude() {
+			float altitude = 0;
+			String altProp = this.getStringProperty("altitude");
+			if (altProp != null && ! altProp.isEmpty()) {
+				altitude = Float.valueOf(altProp);
+			}
+			return altitude;
+		}
+
+		/**
+		 * Return the airport's city
+		 * @return the city
+		 */
+		public String getCity() {
+			String city = this.getStringProperty("city");
+			if (city != null && ! city.isEmpty()) {
+				city = city.substring(1, city.length() - 1);
+			}
+			return city;
+		}
+
+		/**
+		 * Return the airport's country
+		 * @return the country
+		 */
+		public String getCountry() {
+			String country = this.getStringProperty("country");
+			if (country != null && ! country.isEmpty()) {
+				country = country.substring(1, country.length() - 1);
+			}
+			return country;
+		}
+
+		/**
+		 * Return the distance between this object and a given location
+		 * @param other The given location
+		 * @return the distance to the input location
+		 */
+		public double distanceTo(Location other) {
+			return this.location.getDistance(other);
+		}
+
+		/**
+		 * Update this marker's region property
+		 * @param region this marker's region
+		 */
+		public void setRegion(Region region) {
+			this.region = region;
+		}
+
+		/**
+		 * Return this marker's region property
+		 * @return the region
+		 */
+		public Region getRegion() {
+			return this.region;
+		}
+
+		@Override
+		public String toString() {
+			return "{" + getCity() + "|" + getCountry() + "}";
+		}
+		
+	}
+	}
+
+
+}
